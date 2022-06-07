@@ -1,18 +1,27 @@
 <template>
   <teleport to="#modal">
     <div id="center">
-      <button type="primary" @click="update" class="btn">更新</button>
+      <button @click="update" class="btn">更新</button>
       <div v-if="loading">Loading.....</div>
       <img v-if="loaded" :src="result.message" />
     </div>
   </teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { reactive, toRefs } from 'vue';
-import useUrlAxios from '../hooks/useUrlAxios.ts';
+import useUrlAxios from '@/hooks/useUrlAxios';
 
-let res = reactive({});
+interface resPros {
+  result: any,
+  loading: boolean,
+  loaded: boolean,
+}
+let res: resPros = reactive({
+  result: {},
+  loading: true,
+  loaded: false,
+});
 const update = () => {
   const {
     result,
