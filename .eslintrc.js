@@ -22,7 +22,6 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'prettier/prettier': 'off',
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     'import/extensions': 'off',
   },
