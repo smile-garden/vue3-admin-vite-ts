@@ -1,9 +1,11 @@
 <template>
   <teleport to="#modal">
     <div id="center">
-      <button @click="update" class="btn">更新</button>
+      <button class="btn" @click="update">更新</button>
       <div v-if="loading">Loading.....</div>
-      <img v-if="loaded" :src="result.message" />
+      <img
+        v-if="loaded"
+        :src="result.message" />
     </div>
   </teleport>
 </template>
@@ -13,33 +15,27 @@ import { reactive, toRefs } from 'vue';
 import useUrlAxios from '@/hooks/useUrlAxios';
 
 interface resPros {
-  result: any,
-  loading: boolean,
-  loaded: boolean,
+  result: any;
+  loading: boolean;
+  loaded: boolean;
 }
-let res: resPros = reactive({
+const res: resPros = reactive({
   result: {},
   loading: true,
   loaded: false,
 });
 const update = () => {
-  const {
-    result,
-    loading,
-    loaded,
-  } = useUrlAxios('https://dog.ceo/api/breeds/image/random');
+  const { result, loading, loaded } = useUrlAxios(
+    'https://dog.ceo/api/breeds/image/random',
+  );
   res.result = result;
   res.loading = loading;
   res.loaded = loaded;
-}
+};
 
-update()
+update();
 
-const {
-  result,
-  loading,
-  loaded,
-} = toRefs(res);
+const { result, loading, loaded } = toRefs(res);
 </script>
 
 <!--

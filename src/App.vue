@@ -1,21 +1,18 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from '@/components/HelloWorld.vue'
-import Show from '@/components/Show.vue'
+import HelloWorldContent from '@/components/HelloWorldContent.vue';
+import ShowImg from '@/components/ShowImg.vue';
 </script>
 
 <template>
-  <HelloWorld
-  />
+  <HelloWorld-content />
 
   <Suspense>
     <template #default>
-      <show />
+      <show-img />
     </template>
-    <template #fallback>
-        loading...
-    </template>
+    <template #fallback>loading...</template>
   </Suspense>
 </template>
 
@@ -25,7 +22,7 @@ import Show from '@/components/Show.vue'
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #1a2025;
   margin-top: 60px;
 }
 </style>

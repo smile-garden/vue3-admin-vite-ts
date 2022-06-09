@@ -20,5 +20,8 @@ export default defineComponent({
 
 <script setup lang="ts">
 import axios from 'axios';
-const { data: result } = await axios.get('https://dog.ceo/api/breeds/image/random');
+
+const { data: result } = await axios.get(
+  'https://dog.ceo/api/breeds/image/random',
+);
 </script>
