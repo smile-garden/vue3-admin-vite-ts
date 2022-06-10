@@ -9,7 +9,6 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:import/recommended',
     'airbnb-base',
-    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -22,7 +21,6 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'prettier/prettier': 'error',
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     'import/extensions': 'off',
   },

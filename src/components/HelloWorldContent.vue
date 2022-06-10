@@ -18,7 +18,7 @@ console.log(count);
 console.log(count.value);
 
 onUpdated(() => {
-  console.log('update', 'sting');
+  console.log('update', 'feewrew');
 });
 
 onRenderTracked((e) => {
@@ -32,7 +32,9 @@ onRenderTriggered((e) => {
 
 <template>
   <modal-img />
-  <button type="button" @click="count++">count is: {{ count }}</button>
+  <button @click="count++">
+    count is: {{ count }}
+  </button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
