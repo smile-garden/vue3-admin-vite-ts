@@ -26,7 +26,7 @@ onRenderTracked((e) => {
 });
 
 onRenderTriggered((e) => {
-  console.log(e, '状态触发组件');
+  console.log(e, '状态触发组件', "sting");
 });
 </script>
 
