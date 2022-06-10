@@ -18,7 +18,7 @@ console.log(count);
 console.log(count.value);
 
 onUpdated(() => {
-  console.log('update');
+  console.log('update', 'sting');
 });
 
 onRenderTracked((e) => {
@@ -26,7 +26,7 @@ onRenderTracked((e) => {
 });
 
 onRenderTriggered((e) => {
-  console.log(e, '状态触发组件', "sting");
+  console.log(e, '状态触发组件');
 });
 </script>
 
