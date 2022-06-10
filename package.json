@@ -5,19 +5,16 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc --noEmit && vite build",
+    "prepare": "husky install",
     "lint": "eslint --ext .js,.ts,.vue src",
     "lint:fix": "yarn lint --fix",
+    "lint-staged": "lint-staged",
     "preview": "vite preview"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
       "eslint --fix",
-      "git add"
+      "git add -A"
     ]
   },
   "dependencies": {
@@ -33,6 +30,7 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-prettier": "^4.0.0",
