@@ -5,7 +5,8 @@
       <div v-if="loading">Loading.....</div>
       <img
         v-if="loaded"
-        :src="result.message" />
+        :src="result.message"
+      />
     </div>
   </teleport>
 </template>

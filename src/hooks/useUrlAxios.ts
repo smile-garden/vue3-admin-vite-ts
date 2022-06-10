@@ -7,7 +7,8 @@ function useUrlAxios(url: string) {
   const loaded = ref(false);
   const error = ref(null);
 
-  axios.get(url)
+  axios
+    .get(url)
     .then((res) => {
       loading.value = false;
       loaded.value = true;
@@ -16,14 +17,14 @@ function useUrlAxios(url: string) {
     .catch((e) => {
       error.value = e;
       loading.value = false;
-    })
+    });
 
   return {
     result,
     loading,
     loaded,
     error,
-  }
+  };
 }
 
 export default useUrlAxios;
