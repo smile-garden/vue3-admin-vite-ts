@@ -8,7 +8,7 @@ import {
 } from 'vue';
 import ModalImg from './ModalImg.vue';
 
-const str: string = 'prettier';
+const str: string = 'sdfds';
 const count = ref(0);
 
 onMounted(() => {
@@ -35,7 +35,6 @@ onRenderTriggered((e) => {
   <button @click="count++">count is: {{ count }}</button>
   <p>
     Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
 

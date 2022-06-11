@@ -1,7 +1,11 @@
 <template>
   <teleport to="#modal">
     <div id="center">
-      <button class="btn" @click="update">更新</button>
+      <button
+        class="btn"
+        @click="update">
+        更新
+      </button>
       <div v-if="loading">Loading.....</div>
       <img
         v-if="loaded"
