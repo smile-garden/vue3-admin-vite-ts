@@ -5,7 +5,7 @@ module.exports = {
     es2021: true,
     node: true,
     // 开启setup语法糖环境
-    "vue/setup-compiler-macros": true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     // 'plugin:vue/essential',
@@ -14,6 +14,7 @@ module.exports = {
     'plugin:import/recommended',
     'airbnb-base',
     // 'plugin:prettier/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
   ],
   parserOptions: {
     ecmaVersion: 6,
@@ -27,21 +28,23 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // 'prettier/prettier': 'error',
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    'import/no-extraneous-dependencies': ['error', {'devDependencies': true}],
     'import/extensions': 'off',
     'no-mixed-spaces-and-tabs': 'error',
     'quotes': [2, 'single'],
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "always",
+    'vue/html-self-closing': ['error', {
+      'html': {
+        'void': 'always',
       },
     }],
     'vue/html-closing-bracket-newline': 'off', // 不强制换行
+    'vue/multiline-html-element-content-newline': 'off',
     'vue/singleline-html-element-content-newline': 'off', // 不强制换行
     'vue/max-attributes-per-line': ['error', {
       singleline: { max: 2 },
       multiline: { max: 1 }
     }], // vue template模板元素第一行最多5个属性
+    'arrow-parens': 'off',
   },
   settings: {
     'import/resolver': {

@@ -2,18 +2,10 @@
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorldContent from '@/components/HelloWorldContent.vue';
-import ShowImg from '@/components/ShowImg.vue';
 </script>
 
 <template>
   <HelloWorld-content />
-
-  <Suspense>
-    <template #default>
-      <show-img />
-    </template>
-    <template #fallback>loading...</template>
-  </Suspense>
 </template>
 
 <style>

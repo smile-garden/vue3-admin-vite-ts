@@ -24,6 +24,7 @@ interface resPros {
   loading: boolean;
   loaded: boolean;
 }
+
 const res: resPros = reactive({
   result: {},
   loading: true,
@@ -34,8 +35,8 @@ const update = () => {
     'https://dog.ceo/api/breeds/image/random',
   );
   res.result = result;
-  res.loading = loading;
-  res.loaded = loaded;
+  res.loading = loading.value;
+  res.loaded = loaded.value;
 };
 
 update();
