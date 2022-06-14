@@ -1,5 +1,5 @@
 <template>
-  <div>about page</div>
+  <div>about page 测试</div>
 </template>
 
 <script setup lang='ts'>
