@@ -13,7 +13,7 @@ const routes: Array<RouteConfig> = [
         path: '/home',
         name: 'home',
         meta: {
-          title: '首页',
+          title: 'home',
         },
         component: () => import(/* webpackChunkName: 'home' */ '@/views/HomePage.vue'),
       },
@@ -21,7 +21,7 @@ const routes: Array<RouteConfig> = [
         path: '/about',
         name: 'about',
         meta: {
-          title: '关于我们',
+          title: 'dashboard',
         },
         component: () => import(/* webpackChunkName: 'about' */ '@/views/AboutPage.vue'),
       },
