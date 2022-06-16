@@ -26,40 +26,40 @@
       :open-keys="openKeys"
       @open-change="onOpenChange"
       @click="handleClick">
-      <template v-for="item in menus">
-        <a-sub-menu
-          v-if="item.children && item.children.length"
-          :key="item.path">
-          <template #icon>
-            <component :is="item.meta.icon" />
-          </template>
-          <template #title>{{ $t(`menu.${item.meta.title}`) }}</template>
-          <template v-for="subItem in item.children">
-            <a-sub-menu
-              v-if="subItem.children && subItem.children.length"
-              :key="subItem.path">
-              <template #title>{{ $t(`menu.${subItem.meta.title}`) }}</template>
-              <a-menu-item
-                v-for="l3Item in subItem.children"
-                :key="l3Item.path">
-                {{ $t(`menu.${l3Item.meta.title}`) }}
-              </a-menu-item>
-            </a-sub-menu>
-            <a-menu-item
-              v-else
-              :key="subItem.path">
-              {{ $t(`menu.${subItem.meta.title}`) }}
-            </a-menu-item>
-          </template>
-        </a-sub-menu>
-        <a-menu-item
-          v-else
-          :key="item.path">
-          <template #icon>
-            <component :is="item.meta.icon" />
-          </template>
-          {{ $t(`menu.${item.meta.title}`) }}
-        </a-menu-item>
+      <template v-for="item in menus" :key="item.path">
+        <template v-if="item.children && item.children.length">
+          <a-sub-menu :key="item.path">
+            <template #icon>
+              <component :is="item.meta.icon" />
+            </template>
+            <template #title>{{ $t(`menu.${item.meta.title}`) }}</template>
+            <template v-for="subItem in item.children" :key="subItem.path">
+              <template v-if="subItem.children && subItem.children.length">
+                <a-sub-menu :key="subItem.path">
+                  <template #title>{{ $t(`menu.${subItem.meta.title}`) }}</template>
+                  <a-menu-item
+                    v-for="l3Item in subItem.children"
+                    :key="l3Item.path">
+                    {{ $t(`menu.${l3Item.meta.title}`) }}
+                  </a-menu-item>
+                </a-sub-menu>
+              </template>
+              <template v-else>
+                <a-menu-item :key="subItem.path">
+                  {{ $t(`menu.${subItem.meta.title}`) }}
+                </a-menu-item>
+              </template>
+            </template>
+          </a-sub-menu>
+        </template>
+        <template v-else>
+          <a-menu-item :key="item.path">
+            <template #icon>
+              <component :is="item.meta.icon" />
+            </template>
+            {{ $t(`menu.${item.meta.title}`) }}
+          </a-menu-item>
+        </template>
       </template>
     </a-menu>
   </a-layout-sider>
@@ -71,7 +71,7 @@ import {
   computed,
   toRefs,
 } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
 import routes from '@/router/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
 
@@ -82,11 +82,17 @@ defineProps({
   },
 });
 
-const state = reactive({
-  menus: routes[0].children,
+type RouteConfig = RouteRecordRaw & { hidden?: boolean };
+interface StateInt {
+  menus: RouteConfig[],
+  openKeys: string[],
+}
+
+const state = reactive<StateInt>({
+  menus: routes[0].children || [],
   openKeys: [],
 });
-const rootSubmenuKeys = state?.menus?.map((menu) => menu.path);
+const rootSubmenuKeys = state.menus.map((menu) => menu.path);
 const router = useRouter();
 const route = useRoute();
 const selectedKeys = computed(() => [route.path]);
@@ -94,8 +100,8 @@ const matchPaths = (route.matched || []).map((v) => v.path);
 state.openKeys = matchPaths.length > 1
   ? matchPaths.slice(1, matchPaths.length - 1) : matchPaths;
 
-const onOpenChange = (openKeys) => {
-  const latestOpenKey = openKeys.find((key) => !state.openKeys.includes(key));
+const onOpenChange = (openKeys: string[]) => {
+  const latestOpenKey: string = openKeys.find((key: string) => !state.openKeys.includes(key)) || '';
   if (rootSubmenuKeys.includes(latestOpenKey)) {
     state.openKeys = latestOpenKey ? [latestOpenKey] : [];
   } else {
@@ -103,7 +109,7 @@ const onOpenChange = (openKeys) => {
   }
 };
 
-const handleClick = ({ key }) => {
+const handleClick = ({ key }: { key: string }) => {
   if (route.path !== key) {
     router.push(key);
   }
