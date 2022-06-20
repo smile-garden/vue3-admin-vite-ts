@@ -6,11 +6,3 @@
 <template>
   <router-view />
 </template>
-
-<style>
-#app {
-  text-align: center;
-  font-size: 36px;
-  color: #1a2025;
-}
-</style>

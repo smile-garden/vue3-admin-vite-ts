@@ -72,7 +72,7 @@ import {
   toRefs,
 } from 'vue';
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
-import routes from '@/router/routes/index';
+import { routes } from '@/router/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
 
 defineProps({

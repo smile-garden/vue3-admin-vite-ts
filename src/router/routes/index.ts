@@ -1,8 +1,9 @@
 import { RouteRecordRaw } from 'vue-router';
 import BasicLayout from '@/layouts/BasicLayout.vue';
+import AccountLayout from '@/layouts/AccountLayout.vue';
 
 type RouteConfig = RouteRecordRaw & { hidden?: boolean };
-const routes: Array<RouteConfig> = [
+export const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
@@ -32,11 +33,24 @@ const routes: Array<RouteConfig> = [
     redirect: '/404',
     hidden: true,
   },
+];
+
+export const basicRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/account',
+    name: 'account',
+    component: AccountLayout,
+    children: [
+      {
+        path: '/account/login',
+        name: 'accountLogin',
+        component: () => import(/* webpackChunkName: 'login' */ '@/views/account/LoginPage.vue'),
+      },
+    ],
+  },
   {
     path: '/404',
     name: 'exception404',
     component: () => import(/* webpackChunkName: '404' */ '@/views/exception/NoFoundPage.vue'),
   },
 ];
-
-export default routes;
