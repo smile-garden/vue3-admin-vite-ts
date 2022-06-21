@@ -7,5 +7,5 @@ declare module '*.vue' {
   export default component;
 }
 
-declare module 'lodash-es'
-declare module 'vue-i18n/index'
+declare module 'lodash-es';
+declare module 'vue-i18n/index';

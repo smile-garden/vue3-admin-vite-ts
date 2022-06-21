@@ -45,6 +45,12 @@ module.exports = {
       multiline: { max: 1 }
     }], // vue template模板元素第一行最多5个属性
     'arrow-parens': 'off',
+    'no-param-reassign': [
+      2,
+      {
+        props: false,
+      },
+    ],
   },
   settings: {
     'import/resolver': {
