@@ -1,11 +1,11 @@
 import { InjectionKey } from 'vue';
 import { createStore, Store, useStore as baseUseStore } from 'vuex';
-import { Test, AllStateTypes } from './types';
+import { RootStateTypes, AllStateTypes } from './interface';
 
 // 引入子模块
 import accountModule from './modules/account';
 
-export default createStore<Test>({
+export default createStore<RootStateTypes>({
   state: {
     test: '',
   },
@@ -20,7 +20,7 @@ export default createStore<Test>({
   },
 });
 
-export const key: InjectionKey<Store<Test>> = Symbol('vue-store');
+export const key: InjectionKey<Store<RootStateTypes>> = Symbol('vue-store');
 
 export function useStore<T=AllStateTypes>() {
   return baseUseStore<T>(key);

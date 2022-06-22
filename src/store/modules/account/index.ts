@@ -1,8 +1,8 @@
 import { Module } from 'vuex';
-import { Test } from '@/store/types';
-import { AccountTypes } from './types';
+import { RootStateTypes } from '@/store/interface';
+import { AccountTypes } from './interface';
 
-const accountModule: Module<AccountTypes, Test> = {
+const accountModule: Module<AccountTypes, RootStateTypes> = {
   state: {
     count: 0,
   },

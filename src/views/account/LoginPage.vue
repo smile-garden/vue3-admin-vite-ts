@@ -54,6 +54,7 @@ import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n/index';
 import { useRouter } from 'vue-router';
+import { login } from '@/api';
 
 interface FormState {
   username: string,
@@ -82,7 +83,11 @@ const changeFlag = (e) => {
 
 const router = useRouter();
 const onFinish = () => {
-  router.push('/');
+  login(formState)
+    .then((res) => {
+      router.push('/');
+      console.log(res);
+    });
 };
 
 const onFinishFailed = (errInfo) => {
