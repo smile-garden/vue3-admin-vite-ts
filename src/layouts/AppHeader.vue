@@ -26,16 +26,42 @@
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
+    <!-- 用户信息 退出 语言切换 -->
+    <div class="header-info">
+      <a-dropdown>
+        <a class="ant-dropdown-link" @click.prevent>
+          <a-space>
+            <a-avatar :size="32" :src="userInfo.avatar">
+              <template #icon><user-outlined /></template>
+            </a-avatar>
+            <span>{{ userInfo.userName }}</span>
+          </a-space>
+        </a>
+        <template #overlay>
+          <a-menu>
+            <a-menu-item @click="toSettingPage">
+              <a href="javascript:;">个人设置</a>
+            </a-menu-item>
+            <a-menu-divider />
+            <a-menu-item @click="handleLogout">
+              <a href="javascript:;">退出登录</a>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
+    </div>
   </a-layout-header>
 </template>
 
 <script setup lang='ts'>
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
 } from '@ant-design/icons-vue';
+import store from '@/store';
 
 defineProps({
   collapsed: {
@@ -45,10 +71,24 @@ defineProps({
 });
 
 const route = useRoute();
+const router = useRouter();
 const breadcrumbs = computed(() => route.matched.slice(1));
 const emit = defineEmits(['fold']);
 const handleFold = () => {
   emit('fold');
+};
+
+const userInfo = {
+  avatar: '',
+  userName: '',
+};
+
+const toSettingPage = () => {};
+const handleLogout = () => {
+  store.dispatch('logout')
+    .then(() => {
+      router.push({ name: 'accountLogin' });
+    });
 };
 </script>
 

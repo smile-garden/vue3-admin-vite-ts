@@ -53,8 +53,8 @@
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n/index';
-import { useRouter } from 'vue-router';
-import { login } from '@/api';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from '@/store';
 
 interface FormState {
   username: string,
@@ -76,21 +76,34 @@ const rules = computed(() => ({
   password: { required: true, message: t('account.pleaseInputPassword') },
 }));
 
-const changeFlag = (e) => {
+const store = useStore();
+formState.remember = store.getters.remember;
+if (formState.remember) {
+  formState.username = 'admin';
+  formState.password = '123456';
+}
+
+const changeFlag = (e: any) => {
   const { checked } = e.target;
-  console.log(checked);
+  store.commit('SET_REMEMBER', checked);
 };
 
+const route = useRoute();
 const router = useRouter();
-const onFinish = () => {
-  login(formState)
-    .then((res) => {
-      router.push('/');
-      console.log(res);
+const onFinish = (values: FormState) => {
+  formState.loading = true;
+  store.dispatch('login', values)
+    .then(() => {
+      formState.loading = false;
+      const path = route.query.redirect || '/';
+      router.push({ path });
+    })
+    .catch(() => {
+      formState.loading = false;
     });
 };
 
-const onFinishFailed = (errInfo) => {
+const onFinishFailed = (errInfo: any) => {
   console.log(errInfo);
 };
 </script>
