@@ -12,7 +12,7 @@ export const routes: Array<RouteConfig> = [
     children: [
       {
         path: '/home',
-        name: 'home',
+        name: 'homePage',
         meta: {
           title: 'home',
         },

@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
   if (token) {
     if (to.name === 'accountLogin') {
       NProgress.done();
-      next({ name: '/' });
+      next({ name: 'home' });
     } else {
       store.dispatch('getUserInfo');
       const redirect = decodeURIComponent(to.query.redirect || to.path);
