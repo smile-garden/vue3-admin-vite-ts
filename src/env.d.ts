@@ -11,3 +11,4 @@ declare module 'lodash-es';
 declare module 'vue-i18n/index';
 declare module 'qs';
 declare module 'vue-ls';
+declare module 'nprogress';

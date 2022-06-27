@@ -30,6 +30,7 @@ module.exports = {
     // 'prettier/prettier': 'error',
     'import/no-extraneous-dependencies': ['error', {'devDependencies': true}],
     'import/extensions': 'off',
+    'import/prefer-default-export': 'off',
     'no-mixed-spaces-and-tabs': 'error',
     'quotes': [2, 'single'],
     'vue/html-self-closing': ['error', {

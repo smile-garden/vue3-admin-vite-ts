@@ -72,15 +72,11 @@ defineProps({
 
 const route = useRoute();
 const router = useRouter();
+const userInfo = computed(() => store.getters.userInfo);
 const breadcrumbs = computed(() => route.matched.slice(1));
 const emit = defineEmits(['fold']);
 const handleFold = () => {
   emit('fold');
-};
-
-const userInfo = {
-  avatar: '',
-  userName: '',
 };
 
 const toSettingPage = () => {};

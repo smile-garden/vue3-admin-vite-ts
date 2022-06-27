@@ -7,8 +7,8 @@ export function login(data: {
   return request.post('/mock/927859/login', data);
 }
 
-export function getUserInfo(data: any) {
-  return request.post('/mock/927859/userInfo', data);
+export function getUserInfo() {
+  return request.post('/mock/927859/userInfo');
 }
 
 export function getList(data: any) {

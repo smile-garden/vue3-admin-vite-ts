@@ -1,7 +1,7 @@
 import { Module } from 'vuex';
 import { RootStateTypes } from '@/store/interface';
 import ls from '@/utils/storage';
-import { login } from '@/api';
+import { getUserInfo, login } from '@/api';
 import { message } from 'ant-design-vue';
 import { AccountTypes } from './interface';
 
@@ -10,6 +10,7 @@ const accountModule: Module<AccountTypes, RootStateTypes> = {
     count: 0,
     token: ls.get('token', ''),
     remember: ls.get('remember', false),
+    userInfo: null,
   },
   getters: {
     token(state) {
@@ -17,6 +18,9 @@ const accountModule: Module<AccountTypes, RootStateTypes> = {
     },
     remember(state) {
       return state.remember;
+    },
+    userInfo(state) {
+      return state.userInfo || {};
     },
   },
   mutations: {
@@ -30,6 +34,9 @@ const accountModule: Module<AccountTypes, RootStateTypes> = {
     SET_REMEMBER(state, flag) {
       state.remember = flag;
       ls.set('remember', flag);
+    },
+    SET_USER_INFO(state, info) {
+      state.userInfo = info;
     },
   },
   actions: {
@@ -58,6 +65,23 @@ const accountModule: Module<AccountTypes, RootStateTypes> = {
     },
     logout({ commit }) {
       commit('SET_TOKEN', '');
+    },
+    getUserInfo({ commit }) {
+      return new Promise((reslove, reject) => {
+        getUserInfo()
+          .then((res) => {
+            if (res) {
+              commit('SET_USER_INFO', res);
+            } else {
+              commit('SET_TOKEN', '');
+              reject(new Error('获取账户信息失败'));
+            }
+          })
+          .catch((err) => {
+            commit('SET_TOKEN', '');
+            reject(err);
+          });
+      });
     },
   },
 };
