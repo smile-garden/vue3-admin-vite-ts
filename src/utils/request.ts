@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { stringify } from 'qs';
+import router from '@/router';
+import store from '@/store';
 import ls from './storage';
 
 const formContentType: string = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -38,13 +40,13 @@ request.interceptors.response.use(
         return res.data.data;
       }
       if (res.data.code === InvalidCode) {
-        /* store.commit('SET_TOKEN', '');
+        store.commit('SET_TOKEN', '');
         router.replace({
           name: 'accountLogin',
           query: {
             redirect: router.currentRoute.value.fullPath,
           },
-        }); */
+        });
         // window.location.reload();
       }
       // eslint-disable-next-line prefer-promise-reject-errors

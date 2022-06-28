@@ -1,6 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
 import BasicLayout from '@/layouts/BasicLayout.vue';
-import AccountLayout from '@/layouts/AccountLayout.vue';
+import AccountLayout from '@/layouts/AccountLayout.vue'; import {
+  FormOutlined,
+  DashboardOutlined,
+  /* UnorderedListOutlined,
+  ProfileOutlined,
+  UserOutlined, */
+} from '@ant-design/icons-vue';
 
 type RouteConfig = RouteRecordRaw & { hidden?: boolean };
 export const routes: Array<RouteConfig> = [
@@ -15,16 +21,18 @@ export const routes: Array<RouteConfig> = [
         name: 'homePage',
         meta: {
           title: 'home',
+          icon: FormOutlined,
         },
         component: () => import(/* webpackChunkName: 'home' */ '@/views/HomePage.vue'),
       },
       {
-        path: '/about',
-        name: 'about',
+        path: '/dashboard',
+        name: 'dashboard',
         meta: {
           title: 'dashboard',
+          icon: DashboardOutlined,
         },
-        component: () => import(/* webpackChunkName: 'about' */ '@/views/AboutPage.vue'),
+        component: () => import(/* webpackChunkName: 'dashboard' */ '@/views/dashboard/IndexPage.vue'),
       },
     ],
   },
