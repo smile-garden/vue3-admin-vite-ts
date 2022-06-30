@@ -1,9 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
 import BasicLayout from '@/layouts/BasicLayout.vue';
-import AccountLayout from '@/layouts/AccountLayout.vue'; import {
+import AccountLayout from '@/layouts/AccountLayout.vue';
+import RouterView from '@/layouts/RouterView.vue';
+import {
   FormOutlined,
   DashboardOutlined,
-  /* UnorderedListOutlined,
+  UnorderedListOutlined,
+  /*
   ProfileOutlined,
   UserOutlined, */
 } from '@ant-design/icons-vue';
@@ -33,6 +36,26 @@ export const routes: Array<RouteConfig> = [
           icon: DashboardOutlined,
         },
         component: () => import(/* webpackChunkName: 'dashboard' */ '@/views/dashboard/IndexPage.vue'),
+      },
+      {
+        path: '/list',
+        name: 'list',
+        meta: {
+          title: 'listPage',
+          icon: UnorderedListOutlined,
+        },
+        redirect: '/list/table',
+        component: RouterView,
+        children: [
+          {
+            path: '/list/table',
+            name: 'listTable',
+            meta: {
+              title: 'tableList',
+            },
+            component: () => import(/* webpackChunkName: "listTable" */ '@/views/list/TableList.vue'),
+          },
+        ],
       },
     ],
   },

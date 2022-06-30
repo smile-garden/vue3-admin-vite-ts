@@ -12,11 +12,6 @@
     </a-col>
     <a-col v-bind="itemLayout">
       <a-card :bordered="false">
-        <bar-chart />
-      </a-card>
-    </a-col>
-    <a-col v-bind="itemLayout">
-      <a-card :bordered="false">
         <pie-chart />
       </a-card>
     </a-col>
