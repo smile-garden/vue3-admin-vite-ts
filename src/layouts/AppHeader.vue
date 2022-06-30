@@ -49,6 +49,9 @@
           </a-menu>
         </template>
       </a-dropdown>
+      <switch-lang
+        class="header-info__lang ml10"
+      />
     </div>
   </a-layout-header>
 </template>
@@ -62,6 +65,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons-vue';
 import store from '@/store';
+import SwitchLang from '@/layouts/SwitchLang.vue';
 
 defineProps({
   collapsed: {

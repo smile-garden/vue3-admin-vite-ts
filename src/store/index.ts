@@ -4,6 +4,7 @@ import { RootStateTypes, AllStateTypes } from './interface';
 
 // 引入子模块
 import accountModule from './modules/account';
+import systemModule from './modules/system';
 
 export default createStore<RootStateTypes>({
   state: {
@@ -17,6 +18,7 @@ export default createStore<RootStateTypes>({
   },
   modules: {
     accountModule,
+    systemModule,
   },
 });
 

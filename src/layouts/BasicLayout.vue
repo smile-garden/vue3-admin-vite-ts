@@ -16,6 +16,9 @@
       <app-footer />
     </a-layout>
   </a-layout>
+
+  <!-- <set-theme-color
+  /> -->
 </template>
 
 <script setup lang='ts'>
@@ -23,6 +26,7 @@ import { ref } from 'vue';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
+// import SetThemeColor from './SetThemeColor.vue';
 
 const collapsed = ref(false);
 const handleFold = () => {

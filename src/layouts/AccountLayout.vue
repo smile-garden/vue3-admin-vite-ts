@@ -1,5 +1,8 @@
 <template>
   <div class="account-wrapper">
+    <switch-lang
+      class="account-lang"
+    />
     <router-view />
     <div class="account-footer">
       <app-footer />
@@ -8,6 +11,7 @@
 </template>
 
 <script setup lang='ts'>
+import SwitchLang from './SwitchLang.vue';
 import AppFooter from './AppFooter.vue';
 </script>
 

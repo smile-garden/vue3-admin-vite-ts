@@ -5,6 +5,8 @@ import store, { key } from '@/store';
 import i18n from '@/locales/index';
 import App from './App.vue';
 import 'ant-design-vue/dist/antd.css';
+import '@/style/app.less';
+
 import '@/permission';
 
 createApp(App)

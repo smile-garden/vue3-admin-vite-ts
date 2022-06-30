@@ -14,7 +14,7 @@ import { setDocumentTitle } from '@/utils/util';
 
 const { locale, getLocaleMessage } = useI18n();
 const antLocale = computed(() => {
-  const { meta: { title } } = useRoute();
+  const { meta: { title } }: any = useRoute();
   if (title) setDocumentTitle(title);
   return getLocaleMessage(locale.value).antLocale;
 });

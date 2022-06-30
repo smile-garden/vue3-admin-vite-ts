@@ -1,13 +1,11 @@
+import store from '@/store';
 import { createI18n } from 'vue-i18n/index';
 import zh from './zh-CN';
 import en from './en-US';
 
-const { language } = navigator;
-const lang = language;
-
 const i18n = createI18n({
   fallbackLocale: 'zh-CN',
-  locale: lang,
+  locale: store.getters.lang,
   messages: {
     'zh-CN': zh,
     'en-US': en,

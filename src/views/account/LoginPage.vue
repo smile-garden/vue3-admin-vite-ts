@@ -95,7 +95,7 @@ const onFinish = (values: FormState) => {
   store.dispatch('login', values)
     .then(() => {
       formState.loading = false;
-      const path = route.query.redirect || '/';
+      const path = route.query.redirect as string || '/';
       router.push({ path });
     })
     .catch(() => {

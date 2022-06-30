@@ -49,7 +49,6 @@ const accountModule: Module<AccountTypes, RootStateTypes> = {
         login(data)
           .then((res) => {
             const { token } = res;
-            console.log(res);
             if (token) {
               commit('SET_TOKEN', token);
               reslove(res);
