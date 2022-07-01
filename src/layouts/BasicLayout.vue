@@ -17,21 +17,25 @@
     </a-layout>
   </a-layout>
 
-  <!-- <set-theme-color
-  /> -->
+  <set-theme-color
+  />
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
+import { useStore } from '@/store';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
-// import SetThemeColor from './SetThemeColor.vue';
+import SetThemeColor from './SetThemeColor.vue';
 
 const collapsed = ref(false);
 const handleFold = () => {
   collapsed.value = !collapsed.value;
 };
+
+const store = useStore();
+provide('store', store);
 </script>
 
 <style lang='less' scoped>

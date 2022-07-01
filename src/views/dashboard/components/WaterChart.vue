@@ -11,7 +11,7 @@ import { Liquid, measureTextWidth } from '@antv/g2plot';
 
 let liquidPlot: any = null;
 const initRender = () => {
-  liquidPlot = new Liquid(document.getElementById('water-container') as HTMLElement, {
+  liquidPlot = new Liquid(document.getElementById('water-container')!, {
     autoFit: true,
     percent: 0.36,
     radius: 0.8,

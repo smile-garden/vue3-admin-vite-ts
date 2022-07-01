@@ -12,8 +12,8 @@
         {{ $t('action.reset') }}
       </a-button>
     </template>
-    <a-input
-      v-model:value="color"
+    <input
+      v-model="color"
       class="theme-color"
       type="color"
     />
@@ -31,14 +31,13 @@
 </template>
 
 <script setup lang='ts'>
-import { useStore } from '@/store';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import { useI18n } from 'vue-i18n/index';
 import { ConfigProvider, message } from 'ant-design-vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 
 const { t } = useI18n();
-const store = useStore();
+const store: any = inject('store');
 const visible = ref(false);
 const color = ref(store.getters.themeColor);
 const toggleModal = () => {
@@ -55,13 +54,14 @@ const handleOk = (reset = false) => {
     return;
   }
   ConfigProvider.config({
-    theme: ({
+    theme: {
       primaryColor: color.value,
-    }),
+    },
   });
   store.commit('SET_THEME_COLOR', color.value);
   if (!init) toggleModal();
 };
+
 handleOk();
 init = false;
 </script>

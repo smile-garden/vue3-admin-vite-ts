@@ -4,7 +4,8 @@ import router from '@/router';
 import store, { key } from '@/store';
 import i18n from '@/locales/index';
 import App from './App.vue';
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/dist/antd.variable.min.css'; // 动态切换主题
+// import 'ant-design-vue/dist/antd.less'; // 静态自定义样式
 import '@/style/app.less';
 
 import '@/permission';

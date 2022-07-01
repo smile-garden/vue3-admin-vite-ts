@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang='ts'>
-import { useStore } from '@/store';
+import { inject } from 'vue';
 import { useI18n } from 'vue-i18n/index';
 import { GlobalOutlined } from '@ant-design/icons-vue';
 
-const store = useStore();
+const store: any = inject('store');
 const { locale } = useI18n({ useScope: 'global' });
 const switchLang = ({ key }: any) => {
   locale.value = key;

@@ -17,6 +17,18 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
     },
   },
+  /* css: {
+    preprocessorOptions: {
+      less: { // 静态自定义样式
+        modifyVars: {
+          'primary-color': 'green',
+          'link-color': '#1DA57A',
+          'border-radius-base': '2px',
+        },
+        javascriptEnabled: true,
+      },
+    },
+  }, */
   server: {
     open: true,
     proxy: {
