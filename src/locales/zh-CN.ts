@@ -23,6 +23,7 @@ export default {
     pleaseInput: '请输入',
     pleaseSelect: '请选择',
     all: '全部',
+    total: '共',
     item: '条',
   },
   action: {

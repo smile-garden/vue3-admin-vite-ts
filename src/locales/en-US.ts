@@ -23,6 +23,7 @@ export default {
     pleaseInput: 'please input',
     pleaseSelect: 'please select',
     all: 'all',
+    total: 'total',
     item: 'item',
   },
   action: {

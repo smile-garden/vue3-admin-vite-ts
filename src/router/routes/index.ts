@@ -3,7 +3,7 @@ import BasicLayout from '@/layouts/BasicLayout.vue';
 import AccountLayout from '@/layouts/AccountLayout.vue';
 import RouterView from '@/layouts/RouterView.vue';
 import {
-  FormOutlined,
+  // FormOutlined,
   DashboardOutlined,
   UnorderedListOutlined,
   /*
@@ -16,18 +16,9 @@ export const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'home',
-    redirect: '/home',
+    redirect: '/dashboard',
     component: BasicLayout,
     children: [
-      {
-        path: '/home',
-        name: 'homePage',
-        meta: {
-          title: 'home',
-          icon: FormOutlined,
-        },
-        component: () => import(/* webpackChunkName: 'home' */ '@/views/HomePage.vue'),
-      },
       {
         path: '/dashboard',
         name: 'dashboard',
