@@ -6,8 +6,8 @@ import {
   // FormOutlined,
   DashboardOutlined,
   UnorderedListOutlined,
-  /*
   ProfileOutlined,
+  /*
   UserOutlined, */
 } from '@ant-design/icons-vue';
 
@@ -45,6 +45,34 @@ export const routes: Array<RouteConfig> = [
               title: 'tableList',
             },
             component: () => import(/* webpackChunkName: "listTable" */ '@/views/list/TableList.vue'),
+          },
+        ],
+      },
+      {
+        path: '/detail',
+        name: 'detail',
+        meta: {
+          title: 'detailPage',
+          icon: ProfileOutlined,
+        },
+        redirect: '/detail/basic',
+        component: RouterView,
+        children: [
+          {
+            path: '/detail/basic',
+            name: 'detailBasic',
+            meta: {
+              title: 'detailBasic',
+            },
+            component: () => import(/* webpackChunkName: "detailBasic" */ '@/views/detail/DetailBasic.vue'),
+          },
+          {
+            path: '/detail/advanced',
+            name: 'detailAdvanced',
+            meta: {
+              title: 'detailAdvanced',
+            },
+            component: () => import(/* webpackChunkName: "detailAdvanced" */ '@/views/detail/DetailAdvanced.vue'),
           },
         ],
       },
