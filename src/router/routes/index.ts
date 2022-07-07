@@ -3,7 +3,7 @@ import BasicLayout from '@/layouts/BasicLayout.vue';
 import AccountLayout from '@/layouts/AccountLayout.vue';
 import RouterView from '@/layouts/RouterView.vue';
 import {
-  // FormOutlined,
+  FormOutlined,
   DashboardOutlined,
   UnorderedListOutlined,
   ProfileOutlined,
@@ -27,6 +27,53 @@ export const routes: Array<RouteConfig> = [
           icon: DashboardOutlined,
         },
         component: () => import(/* webpackChunkName: 'dashboard' */ '@/views/dashboard/IndexPage.vue'),
+      },
+      {
+        path: '/form',
+        name: 'form',
+        meta: {
+          title: 'formPage',
+          icon: FormOutlined,
+        },
+        redirect: '/form/basic',
+        component: RouterView,
+        children: [
+          {
+            path: '/form/basic',
+            name: 'formBasic',
+            meta: {
+              title: 'formBasic',
+            },
+            redirect: '/form/basic/child',
+            component: RouterView,
+            children: [
+              {
+                path: '/form/basic/child',
+                name: 'formBasicChild',
+                meta: {
+                  title: 'formBasicChild',
+                },
+                component: () => import(/* webpackChunkName: "formBasic" */ '@/views/form/FormBasic.vue'),
+              },
+            ],
+          },
+          {
+            path: '/form/step',
+            name: 'formStep',
+            meta: {
+              title: 'formStep',
+            },
+            component: () => import(/* webpackChunkName: "formStep" */ '@/views/form/FormStep.vue'),
+          },
+          {
+            path: '/form/advanced',
+            name: 'formAdvanced',
+            meta: {
+              title: 'formAdvanced',
+            },
+            component: () => import(/* webpackChunkName: "formAdvanced" */ '@/views/form/FormAdvanced.vue'),
+          },
+        ],
       },
       {
         path: '/list',
