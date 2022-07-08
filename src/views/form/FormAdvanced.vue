@@ -68,39 +68,43 @@
         />
       </a-form-item>
     </a-form>
-  </a-card>
 
-  <a-card :bordered="false">
+    <form-common
+      ref="commonRef"
+      :form-item-layout="layout"
+    />
+
+    <a-divider />
+
     <form-field
       ref="contactRef"
     />
-  </a-card>
+    <a-divider />
 
-  <a-card :bordered="false">
     <form-field
       ref="websiteRef"
       label-name="网址"
     />
-  </a-card>
-
-  <a-card :bordered="false">
     <a-form-item
       :wrapper-col="{ span: 24 }"
       style="text-align: center;"
       v-bind="errorInfos">
       <a-button type="primary" @click.prevent="onSubmit">注册公司</a-button>
-      <a-button class="ml10" @click="resetFields">重置</a-button>
+      <a-button class="ml10" @click="onReset">重置</a-button>
     </a-form-item>
   </a-card>
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, computed } from 'vue';
+import {
+  ref, reactive, computed,
+} from 'vue';
 import { toArray } from 'lodash-es';
 import { Form } from 'ant-design-vue';
+import FormCommon from './FormCommon.vue';
 import FormField from './FormField.vue';
 
-const useFormHandle = Form.useForm;
+const { useForm } = Form;
 const layout = {
   labelCol: {
     lg: { span: 9 },
@@ -138,46 +142,72 @@ const {
   validate,
   validateInfos,
   mergeValidateInfo,
-} = useFormHandle(infoRef, rules);
+} = useForm(infoRef, rules);
 
-const contactRef = ref();
-const websiteRef = ref();
+const contactRef = ref<InstanceType<typeof FormField>>();
+const websiteRef = ref<InstanceType<typeof FormField>>();
+const commonRef = ref<InstanceType<typeof FormCommon>>();
 const onSubmit = () => {
   const basicInfo = new Promise((resolve, reject) => {
     validate()
       .then((res) => {
-        console.log(res, infoRef);
-        resolve(infoRef);
+        resolve(res);
       })
       .catch((err) => {
         reject(err);
       });
   });
-  const contactInfo = new Promise((resolve, reject) => {
-    contactRef.value.submit()
+  const commonInfo = new Promise((resolve, reject) => {
+    commonRef.value?.validate()
       .then((res: any) => {
+        console.log('common pass', res);
         resolve(res);
       })
       .catch((err: any) => {
+        console.log('common err', err);
+        reject(err);
+      });
+  });
+  const contactInfo = new Promise((resolve, reject) => {
+    contactRef.value?.submit()
+      .then((res: any) => {
+        console.log('contact pass', res);
+        resolve(res);
+      })
+      .catch((err: any) => {
+        console.log('contact err', err);
         reject(err);
       });
   });
   const websiteInfo = new Promise((resolve, reject) => {
-    websiteRef.value.submit()
+    websiteRef.value?.submit()
       .then((res: any) => {
+        console.log('websit pass', res);
         resolve(res);
       })
       .catch((err: any) => {
+        console.log('websit err', err);
         reject(err);
       });
   });
-  Promise.all([basicInfo, contactInfo, websiteInfo])
+  Promise.all([commonInfo, basicInfo, contactInfo, websiteInfo])
     .then((values) => {
-      console.log(values);
+      console.log('all pass', values);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((errs) => {
+      console.log('has errors', errs);
     });
 };
-const errorInfos = computed(() => mergeValidateInfo(toArray(validateInfos)));
+
+const onReset = () => {
+  resetFields();
+  commonRef.value?.resetFields();
+  contactRef.value?.resetForm();
+  websiteRef.value?.resetForm();
+};
+
+const errorInfos = computed(() => {
+  const list = [...toArray(validateInfos), ...toArray(commonRef.value?.validateInfos)];
+  return mergeValidateInfo(list);
+});
 </script>

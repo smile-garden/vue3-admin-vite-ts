@@ -140,7 +140,7 @@ const handleFinishFailed = (errors: any) => {
 };
 
 const resetForm = () => {
-  formRef.value.resetFields();
+  formRef.value!.resetFields();
 };
 
 const handleValidate = (...args: any) => {
