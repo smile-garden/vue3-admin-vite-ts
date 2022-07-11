@@ -22,7 +22,7 @@
       </a-space>
     </div>
   </a-card>
-  <!-- <a-card :bordered="false">
+  <a-card :bordered="false">
     <a-button type="primary" @click="showModal">选择</a-button>
     <list-table
       class="mt10"
@@ -33,33 +33,40 @@
 
   <select-modal
     ref="modalRef"
-    :getCheckboxProps="getCheckboxProps"
+    :get-checkbox-props="getCheckboxProps"
     @save="save"
-  /> -->
+  />
 </template>
 
 <script setup lang='ts'>
 import { ref, reactive } from 'vue';
-/* import SelectModal from './components/SelectModal.vue';
-import ListTable from './components/ListTable.vue'; */
+import SelectModal from './components/SelectModal.vue';
+import ListTable from './components/ListTable.vue';
 
-/* const loading = ref(false);
-const selectedIdList = ref([]);
-const selectedList = ref([]);
-
-const modalRef = ref(null);
+const loading = ref(false);
+const modalRef = ref<InstanceType<typeof SelectModal>>();
 const showModal = () => {
-  modalRef.value.show();
+  modalRef.value?.show();
 };
-const getCheckboxProps = (record) => ({
+
+interface DataType {
+  age: number,
+  date: string,
+  id: string,
+  score: number,
+  userName: string,
+}
+const selectedIdList = ref<string[]>([]);
+const selectedList = ref<DataType[]>([]);
+const getCheckboxProps = (record: DataType) => ({
   disabled: selectedIdList.value.includes(record.id),
 });
 
-const save = (selectedRowKeys, selectedRows, cb) => {
+const save = (selectedRowKeys: string[], selectedRows: DataType[], cb: any) => {
   selectedIdList.value = [...selectedRowKeys, ...selectedIdList.value];
   selectedList.value = [...selectedRows, ...selectedList.value];
   cb();
-}; */
+};
 
 const current = ref(0);
 const steps = reactive([

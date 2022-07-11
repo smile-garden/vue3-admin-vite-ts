@@ -22,8 +22,7 @@
 </template>
 
 <script setup lang='ts'>
-import { provide, ref } from 'vue';
-import { useStore } from '@/store';
+import { ref } from 'vue';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
@@ -33,9 +32,6 @@ const collapsed = ref(false);
 const handleFold = () => {
   collapsed.value = !collapsed.value;
 };
-
-const store = useStore();
-provide('store', store);
 </script>
 
 <style lang='less' scoped>

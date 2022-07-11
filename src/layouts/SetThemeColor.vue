@@ -31,13 +31,14 @@
 </template>
 
 <script setup lang='ts'>
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
+import { useStore } from '@/store';
 import { useI18n } from 'vue-i18n/index';
 import { ConfigProvider, message } from 'ant-design-vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 
 const { t } = useI18n();
-const store: any = inject('store');
+const store: any = useStore();
 const visible = ref(false);
 const color = ref(store.getters.themeColor);
 const toggleModal = () => {
