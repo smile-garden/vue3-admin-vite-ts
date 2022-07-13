@@ -7,7 +7,7 @@ import store from './store';
 
 const whiteList = ['accountLogin', 'exception404'];
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to: any, from, next) => {
   NProgress.start();
   const token = ls.get('token');
   if (token) {
@@ -38,5 +38,5 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to) => {
   NProgress.done();
-  if (to.meta) setDocumentTitle(to.meta.title);
+  if (to.meta) setDocumentTitle(to.meta.title as string);
 });

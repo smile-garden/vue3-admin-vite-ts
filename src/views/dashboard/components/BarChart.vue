@@ -1,7 +1,7 @@
 <template>
   <a-button
     type="primary"
-    @click="update">{{ $t('action.update') }}</a-button>
+    @click="update">更新</a-button>
   <div id="bar-container">
     <!-- 柱状图容器盒子 -->
   </div>

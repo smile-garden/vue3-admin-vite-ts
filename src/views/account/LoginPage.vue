@@ -13,7 +13,7 @@
       <a-form-item name="username">
         <a-input
           v-model:value.trim="formState.username"
-          :placeholder="$t('account.userName')">
+          :placeholder="t('account.userName')">
           <template #prefix>
             <user-outlined style="color: #bbb;" />
           </template>
@@ -23,7 +23,7 @@
       <a-form-item name="password">
         <a-input-password
           v-model:value.trim="formState.password"
-          :placeholder="$t('account.password')">
+          :placeholder="t('account.password')">
           <template #prefix>
             <lock-outlined style="color: #bbb;" />
           </template>
@@ -33,7 +33,7 @@
       <a-form-item name="remember">
         <a-checkbox
           v-model:checked="formState.remember"
-          @change="changeFlag">{{ $t('account.remember') }}</a-checkbox>
+          @change="changeFlag">{{ t('account.remember') }}</a-checkbox>
       </a-form-item>
 
       <a-form-item>
@@ -43,7 +43,7 @@
           :loading="formState.loading"
           type="primary"
           html-type="submit"
-        >{{ $t('action.login') }}</a-button>
+        >{{ t('action.login') }}</a-button>
       </a-form-item>
     </a-form>
   </div>

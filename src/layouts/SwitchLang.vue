@@ -7,9 +7,9 @@
     <template #overlay>
       <a-menu @click="switchLang">
         <a-menu-item
-          v-for="(item, key) in $i18n.messages"
+          v-for="(item, key) in messages"
           :key="key"
-          :disabled="$i18n.locale === key">
+          :disabled="locale === key">
           {{ item.langName }}
         </a-menu-item>
       </a-menu>
@@ -23,7 +23,7 @@ import { useI18n } from 'vue-i18n/index';
 import { GlobalOutlined } from '@ant-design/icons-vue';
 
 const store: any = useStore();
-const { locale } = useI18n({ useScope: 'global' });
+const { locale, messages } = useI18n({ useScope: 'global' });
 const switchLang = ({ key }: any) => {
   locale.value = key;
   store.commit('SET_LANG', key);

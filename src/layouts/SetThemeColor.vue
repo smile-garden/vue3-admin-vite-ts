@@ -4,12 +4,12 @@
     :width="420"
     @ok="handleOk()">
     <template #title>
-      {{ $t('action.set') }}
+      {{ t('action.set') }}
       <a-button
         size="small"
         type="link"
         @click="handleOk(true)">
-        {{ $t('action.reset') }}
+        {{ t('action.reset') }}
       </a-button>
     </template>
     <input

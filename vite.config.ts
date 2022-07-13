@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
+import viteCompression from 'vite-plugin-compression';
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
@@ -10,6 +11,10 @@ export default defineConfig({
     eslintPlugin({
       include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
       // cache: false,
+    }),
+    viteCompression({
+      algorithm: 'gzip',
+      threshold: 10240, // 压缩限制
     }),
   ],
   resolve: {
@@ -30,6 +35,7 @@ export default defineConfig({
     },
   }, */
   server: {
+    host: true,
     open: true,
     proxy: {
       '/api': {
@@ -37,6 +43,40 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+    },
+  },
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        // 生产环境时移除console.log()
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      // 两种方式
+      // 一，也可以指定包名打包
+      output: {
+        manualChunks: {
+          'ant-design-vue': ['ant-design-vue'],
+          '@antv/data-set': ['@antv/data-set'],
+          '@antv/g2': ['@antv/g2'],
+          '@antv/g2plot': ['@antv/g2plot'],
+        },
+      },
+      // 二，自动分割包名输出 chunkSizeWarningLimit 配置大小
+      /* output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/static/[name]-[hash].[ext]',
+        manualChunks(id: any) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+          return '';
+        },
+      }, */
     },
   },
 });

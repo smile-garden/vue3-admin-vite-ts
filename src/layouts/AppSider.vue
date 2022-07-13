@@ -16,7 +16,7 @@
         <SmileFilled
           class="sider-logo__img"
         />
-        <span class="sider-logo__text">{{ $t('menu.head') }}</span>
+        <span class="sider-logo__text">{{ t('menu.head') }}</span>
       </div>
     </div>
     <a-menu
@@ -32,21 +32,21 @@
             <template #icon>
               <component :is="item.meta.icon" />
             </template>
-            <template #title>{{ $t(`menu.${item.meta.title}`) }}</template>
+            <template #title>{{ t(`menu.${item.meta.title}`) }}</template>
             <template v-for="subItem in item.children" :key="subItem.path">
               <template v-if="subItem.children && subItem.children.length">
                 <a-sub-menu :key="subItem.path">
-                  <template #title>{{ $t(`menu.${subItem.meta.title}`) }}</template>
+                  <template #title>{{ t(`menu.${subItem.meta.title}`) }}</template>
                   <a-menu-item
                     v-for="l3Item in subItem.children"
                     :key="l3Item.path">
-                    {{ $t(`menu.${l3Item.meta.title}`) }}
+                    {{ t(`menu.${l3Item.meta.title}`) }}
                   </a-menu-item>
                 </a-sub-menu>
               </template>
               <template v-else>
                 <a-menu-item :key="subItem.path">
-                  {{ $t(`menu.${subItem.meta.title}`) }}
+                  {{ t(`menu.${subItem.meta.title}`) }}
                 </a-menu-item>
               </template>
             </template>
@@ -57,7 +57,7 @@
             <template #icon>
               <component :is="item.meta.icon" />
             </template>
-            {{ $t(`menu.${item.meta.title}`) }}
+            {{ t(`menu.${item.meta.title}`) }}
           </a-menu-item>
         </template>
       </template>
@@ -72,6 +72,7 @@ import {
   toRefs,
 } from 'vue';
 import { useRouter, useRoute, RouteRecordRaw } from 'vue-router';
+import { useI18n } from 'vue-i18n/index';
 import { routes } from '@/router/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
 
@@ -82,7 +83,7 @@ defineProps({
   },
 });
 
-type RouteConfig = RouteRecordRaw & { hidden?: boolean };
+type RouteConfig = RouteRecordRaw & { meta?: any, children?: RouteConfig[] };
 interface StateInt {
   menus: RouteConfig[],
   openKeys: string[],
@@ -95,6 +96,7 @@ const state = reactive<StateInt>({
 const rootSubmenuKeys = state.menus.map((menu) => menu.path);
 const router = useRouter();
 const route = useRoute();
+const { t } = useI18n();
 const selectedKeys = computed(() => [route.path]);
 const matchPaths = (route.matched || []).map((v) => v.path);
 state.openKeys = matchPaths.length > 1

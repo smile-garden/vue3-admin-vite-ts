@@ -1,13 +1,13 @@
 <template>
   <a-card :bordered="false">
     <a-form layout="inline" class="app-filter-wrapper">
-      <a-form-item :label="$t('user.name')">
-        <a-input v-model:value="queryParams.name" :placeholder="$t('common.pleaseInput')" />
+      <a-form-item :label="t('user.name')">
+        <a-input v-model:value="queryParams.name" :placeholder="t('common.pleaseInput')" />
       </a-form-item>
       <a-form-item>
         <a-space>
-          <a-button type="primary" @click="searchQuery">{{ $t('action.search') }}</a-button>
-          <a-button @click="resetQuery">{{ $t('action.reset') }}</a-button>
+          <a-button type="primary" @click="searchQuery">{{ t('action.search') }}</a-button>
+          <a-button @click="resetQuery">{{ t('action.reset') }}</a-button>
         </a-space>
       </a-form-item>
     </a-form>
@@ -24,7 +24,7 @@
       class="ant-table-pagination ant-table-pagination-right"
       show-quick-jumper
       :total="total"
-      :show-total="(total: number) => `${$t('common.total')} ${total} ${$t('common.item')}`"
+      :show-total="(total: number) => `${t('common.total')} ${total} ${t('common.item')}`"
       @change="change"
     />
   </a-card>

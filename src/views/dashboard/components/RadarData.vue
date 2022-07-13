@@ -1,5 +1,5 @@
 <template>
-  <a-button type="primary" @click="update">{{ $t('action.update') }}</a-button>
+  <a-button type="primary" @click="update">更新</a-button>
   <div id="radar-container1">
     <!-- 雷达图容器盒子 -->
   </div>

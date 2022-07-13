@@ -20,9 +20,9 @@
           <router-link
             v-if="index !== breadcrumbs.length - 1"
             :to="item.path">
-            {{ $t(`menu.${item.meta.title}`) }}
+            {{ t(`menu.${item.meta.title}`) }}
           </router-link>
-          <span v-else>{{ $t(`menu.${item.meta.title}`) }}</span>
+          <span v-else>{{ t(`menu.${item.meta.title}`) }}</span>
         </a-breadcrumb-item>
       </a-breadcrumb>
     </div>
@@ -49,6 +49,7 @@
           </a-menu>
         </template>
       </a-dropdown>
+
       <switch-lang
         class="header-info__lang ml10"
       />
@@ -59,6 +60,7 @@
 <script setup lang='ts'>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n/index';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -76,6 +78,7 @@ defineProps({
 
 const route = useRoute();
 const router = useRouter();
+const { t } = useI18n();
 const userInfo = computed(() => store.getters.userInfo);
 const breadcrumbs = computed(() => route.matched.slice(1));
 const emit = defineEmits(['fold']);
