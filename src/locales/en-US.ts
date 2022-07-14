@@ -18,6 +18,8 @@ export default {
     detailBasic: 'Detail Basic',
     detailAdvanced: 'Detail Advanced',
     account: 'Personal Page',
+    components: 'Components',
+    componentsEditor: 'Editor',
   },
   common: {
     pleaseInput: 'please input',

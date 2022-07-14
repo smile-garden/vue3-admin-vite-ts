@@ -1,19 +1,18 @@
 <template>
   <a-layout-header
-    class="header-box"
-    :style="{
-      left: collapsed ? '80px' : '200px',
-    }">
+    class="header-box">
     <div class="header-nav">
       <!-- 展开折叠开关 -->
       <div class="header-fold">
         <component
-          :is="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
+          :is="(collapsed || isMobile) ? MenuUnfoldOutlined : MenuFoldOutlined"
           @click="handleFold"
         />
       </div>
       <!-- 面包屑 -->
-      <a-breadcrumb class="header-breadcrumb ml10">
+      <a-breadcrumb
+        v-if="!isMobile"
+        class="header-breadcrumb ml10">
         <a-breadcrumb-item
           v-for="(item, index) in breadcrumbs"
           :key="item.path">
@@ -74,6 +73,10 @@ defineProps({
     type: Boolean,
     required: true,
   },
+  isMobile: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const route = useRoute();
@@ -98,9 +101,7 @@ const handleLogout = () => {
 <style lang='less' scoped>
 .header {
   &-box {
-    position: fixed;
-    top: 0;
-    right: 0;
+    position: relative;
     z-index: 9;
     display: flex;
     justify-content: space-between;

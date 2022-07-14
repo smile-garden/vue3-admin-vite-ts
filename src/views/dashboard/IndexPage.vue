@@ -36,7 +36,7 @@ import AreaChart from './components/AreaChart.vue';
 import WaterChart from './components/WaterChart.vue';
 
 const itemLayout = {
-  md: 24,
+  xs: 24,
   lg: 12,
   xxl: 8,
 };

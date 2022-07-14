@@ -16,6 +16,7 @@
       :columns="columns"
       :data-source="currentList"
       :loading="loading"
+      :pagination="false"
     />
 
     <a-pagination

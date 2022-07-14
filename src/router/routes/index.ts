@@ -7,6 +7,7 @@ import {
   DashboardOutlined,
   UnorderedListOutlined,
   ProfileOutlined,
+  AppstoreOutlined,
   /*
   UserOutlined, */
 } from '@ant-design/icons-vue';
@@ -120,6 +121,26 @@ export const routes: Array<RouteConfig> = [
               title: 'detailAdvanced',
             },
             component: () => import(/* webpackChunkName: "detailAdvanced" */ '@/views/detail/DetailAdvanced.vue'),
+          },
+        ],
+      },
+      {
+        path: '/components',
+        name: 'components',
+        meta: {
+          title: 'components',
+          icon: AppstoreOutlined,
+        },
+        redirect: '/components/editor',
+        component: RouterView,
+        children: [
+          {
+            path: '/components/editor',
+            name: 'componentsEditor',
+            meta: {
+              title: 'componentsEditor',
+            },
+            component: () => import(/* webpackChunkName: "componentsEditor" */ '@/views/components/EditorDemo.vue'),
           },
         ],
       },

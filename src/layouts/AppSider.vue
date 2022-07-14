@@ -1,10 +1,7 @@
 <template>
   <a-layout-sider
     :style="{
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
+      position: 'relative',
       height: '100vh',
       overflow: 'auto',
     }"

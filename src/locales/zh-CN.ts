@@ -18,6 +18,8 @@ export default {
     detailBasic: '基础详情',
     detailAdvanced: '高级详情',
     account: '个人页',
+    components: '组件',
+    componentsEditor: '富文本',
   },
   common: {
     pleaseInput: '请输入',
