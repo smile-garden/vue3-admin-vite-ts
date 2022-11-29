@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
 import viteCompression from 'vite-plugin-compression';
 import { resolve } from 'path';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,6 +16,9 @@ export default defineConfig({
     viteCompression({
       algorithm: 'gzip',
       threshold: 10240, // 压缩限制
+    }),
+    visualizer({
+      open: true,
     }),
   ],
   resolve: {
@@ -46,7 +50,11 @@ export default defineConfig({
     },
   },
   build: {
-    minify: 'terser',
+    chunkSizeWarningLimit: 2000,
+    cssCodeSplit: true, // css 拆分
+    sourcemap: false, // 不生成sourcemap
+    minify: 'terser', // 是否禁用最小化混淆，esbuild打包速度最快，terser打包体积最小。
+    assetsInlineLimit: 5000, // 小于该值 图片将打包成Base64
     terserOptions: {
       compress: {
         // 生产环境时移除console.log()
